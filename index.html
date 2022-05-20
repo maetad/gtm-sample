@@ -155,7 +155,8 @@
             document.getElementById('reservation').scrollIntoView()
 
             // send virtual pageview
-            dataLayer.push('virtual_pageview', {
+            dataLayer.push({
+                'event': 'virtual_pageview',
                 'page_location': '/reservation'
             })
         }
@@ -177,7 +178,8 @@
             document.getElementById('thank-you-modal').classList.add('hidden')
 
             // send virtual pageview
-            dataLayer.push('virtual_pageview', {
+            dataLayer.push({
+                'event': 'virtual_pageview',
                 'page_location': '/reservation/success'
             })
 
