@@ -157,7 +157,8 @@
             // send virtual pageview
             dataLayer.push({
                 'event': 'virtual_pageview',
-                'page_location': '/reservation'
+                'page_location': '/reservation',
+                'page_title': 'Reservation Success'
             })
         }
 
@@ -180,7 +181,8 @@
             // send virtual pageview
             dataLayer.push({
                 'event': 'virtual_pageview',
-                'page_location': '/reservation/success'
+                'page_location': '/reservation/success',
+                'page_title': 'Reservation Success'
             })
 
             document.querySelectorAll('#reservation form [name]').forEach(($ele) => {
