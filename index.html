@@ -181,12 +181,28 @@
 
         document.getElementById('make-reservation-btn').onclick = (e) => {
             e.preventDefault()
+
+            // tag
+            gtag('event', 'click', {
+                event_category: 'CTA',
+                event_label: 'Make Reservation'
+            })
+
             document.querySelectorAll('#reservation form [name]').forEach(($ele) => {
                 $ele.setAttribute('disabled', true)
                 document.querySelector('#make-reservation-btn svg').classList.remove('hidden')
                 document.querySelector('#make-reservation-btn span').innerHTML = 'Making Reservation'
                 setTimeout(() => {
                     document.getElementById('thank-you-modal').classList.remove('hidden')
+
+                    gtag('event', 'pageview', {
+                        'page_location': '/reservation/success',
+                        'page_title': 'Reservation Success'
+                    })
+
+                    fbq('track', 'Lead', {
+                        content_name: 'Reservation Success'
+                    });
                 }, 1000)
             })
 
@@ -196,21 +212,6 @@
         document.querySelector('#thank-you-modal button').onclick = (e) => {
             e.preventDefault()
             document.getElementById('thank-you-modal').classList.add('hidden')
-
-            // tag
-            gtag('event', 'click', {
-                event_category: 'CTA',
-                event_label: 'Make Reservation'
-            })
-
-            gtag('event', 'pageview', {
-                'page_location': '/reservation/success',
-                'page_title': 'Reservation Success'
-            })
-
-            fbq('track', 'Lead', {
-                content_name: 'Reservation Success'
-            });
 
             document.querySelectorAll('#reservation form [name]').forEach(($ele) => {
                 $ele.setAttribute('disabled', false)
