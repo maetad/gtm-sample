@@ -170,6 +170,13 @@
                 document.querySelector('#make-reservation-btn span').innerHTML = 'Making Reservation'
                 setTimeout(() => {
                     document.getElementById('thank-you-modal').classList.remove('hidden')
+
+                    // send virtual pageview
+                    dataLayer.push({
+                        'event': 'virtual_pageview',
+                        'page_location': '/reservation/success',
+                        'page_title': 'Reservation Success'
+                    })
                 }, 1000)
             })
         }
@@ -177,13 +184,6 @@
         document.querySelector('#thank-you-modal button').onclick = (e) => {
             e.preventDefault()
             document.getElementById('thank-you-modal').classList.add('hidden')
-
-            // send virtual pageview
-            dataLayer.push({
-                'event': 'virtual_pageview',
-                'page_location': '/reservation/success',
-                'page_title': 'Reservation Success'
-            })
 
             document.querySelectorAll('#reservation form [name]').forEach(($ele) => {
                 $ele.setAttribute('disabled', false)
